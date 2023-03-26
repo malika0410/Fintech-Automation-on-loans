@@ -69,11 +69,11 @@ loan = {
 # @TODO: Use get() on the dictionary of additional information to extract the Future Value and Remaining Months on the loan.
 # Print each variable.
 # YOUR CODE HERE!
-Future_Value=loan.get("future_value")
-print(f"Future value of this particular loan is :",Future_Value)
+future_Value=loan.get("future_value")
+print(f"Future value of this particular loan is :",future_Value)
 
-Remaining_months=loan.get("remaining_months")
-print(f"Remaining months left on this loan is:",Remaining_months)
+remaining_months=loan.get("remaining_months")
+print(f"Remaining months left on this loan is:",remaining_months)
 
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
@@ -83,9 +83,9 @@ print(f"Remaining months left on this loan is:",Remaining_months)
 
 # YOUR CODE HERE!
 discount_rate=0.20
-present_value=Future_Value/(1+discount_rate/12)**Remaining_months
+present_value=future_Value/(1+discount_rate/12)**remaining_months
 fair_value=present_value
-print(f"The fair value for this loan is:",fair_value)
+print(f"The fair value for this loan is:",round(fair_value,2))
 
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
@@ -93,7 +93,7 @@ print(f"The fair value for this loan is:",fair_value)
 #    If the present value of the loan is greater than or equal to the cost, then print a message that says the loan is worth at least the cost to buy it.
 #    Else, the present value of the loan is less than the loan cost, then print a message that says that the loan is too expensive and not worth the price.
 # YOUR CODE HERE!
-if present_value>=loan["loan_price"]:
+if present_value>=loan["loan_price"]:               #To check whether the present value is greater than or equal to loan price to determine the worth of getting loan.
     print(f"The loan is worth atleast the cost to buy it")
 else:
     print(f"The loan is too expensive and not worth to buy")
@@ -122,9 +122,9 @@ new_loan = {
 #    This function should include parameters for `future_value`, `remaining_months`, and the `annual_discount_rate`
 #    The function should return the `present_value` for the loan.
 # YOUR CODE HERE!
-def calculate_present_value(Future_value,Remaining_months,annual_discount_rate):  #defining a function to calculate present value.
-    present_value=Future_Value/(1+discount_rate/12)**Remaining_months
-    return present_value
+def calculate_present_value(future_value,remaining_months,annual_discount_rate):  #defining a function to calculate present value.
+    present_value=future_Value/(1+discount_rate/12)**remaining_months
+    return present_value                            #This defined funtion returns present_value to minimize repetition of the code.
           
 
 
@@ -176,13 +176,13 @@ loans = [
 
 # @TODO: Create an empty list called `inexpensive_loans`
 # YOUR CODE HERE!
-inexpensive_loans=[]
+inexpensive_loans=[]                       #created empty list.
 
 # @TODO: Loop through all the loans and append any that cost $500 or less to the `inexpensive_loans` list
 # YOUR CODE HERE!
-for value in loans:
-    if value['loan_price'] <=500:
-        inexpensive_loans.append(value)
+for value in loans:                        #using for loop to check each item in the list of dictionaries.
+    if value['loan_price'] <=500:          #check whether the cost of the loan is less than or equal to 500 or not.
+        inexpensive_loans.append(value)    #assigning the item which matches the conditon into the list. 
      
 
 # @TODO: Print the `inexpensive_loans` list
@@ -213,10 +213,10 @@ output_path = Path("inexpensive_loans.csv")
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 # YOUR CODE HERE!
-with open(output_path,"w") as csvfile:
-    csvwriter=csv.writer(csvfile,delimiter=(','))
-    csvwriter.writerow(header)
-    for item in inexpensive_loans:
-        csvwriter.writerow(item.values())
+with open(output_path,"w") as csvfile:               #creating a csvfile in a write mode to assign values.
+    csvwriter=csv.writer(csvfile,delimiter=(','))    #using csv.writer function from the csv library to write in the file and seperating it with delimiter","
+    csvwriter.writerow(header)                       #firstly writing a row and assigning headings to it.
+    for item in inexpensive_loans:                   
+        csvwriter.writerow(item.values())            # writing items in a row from the list created above using for loop.
     
     
